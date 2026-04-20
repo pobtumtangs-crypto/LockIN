@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LockIN — Ben's Productivity App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <h1>🔒 LockIN</h1>
+        <span class="tagline">No excuses, Ben.</span>
+      </div>
+      <div class="header-right">
+        <div class="streak-display" id="streakDisplay" title="Current streak">
+          <span class="streak-icon">🔥</span>
+          <div class="streak-nums">
+            <span class="streak-count" id="streakCount">0</span>
+            <span class="streak-label">day streak</span>
+          </div>
+          <div class="streak-best" id="streakBest">🏆 0</div>
+        </div>
+        <button class="notif-btn" id="notifBtn" title="Enable notifications">🔔</button>
+        <span class="date-display" id="dateDisplay"></span>
+      </div>
+    </header>
+
+    <main>
+      <!-- Pomodoro Timer -->
+      <section class="card pomodoro-card">
+        <h2>Focus Timer</h2>
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="work">Work (25 min)</button>
+          <button class="mode-tab" data-mode="short">Break (5 min)</button>
+          <button class="mode-tab" data-mode="long">Long Break (15 min)</button>
+        </div>
+        <div class="timer-ring-wrap">
+          <svg class="timer-ring" viewBox="0 0 200 200">
+            <circle class="ring-bg" cx="100" cy="100" r="88" />
+            <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="88"
+              stroke-dasharray="553" stroke-dashoffset="0" />
+          </svg>
+          <div class="timer-center">
+            <span class="timer-display" id="timerDisplay">25:00</span>
+            <span class="timer-label" id="timerLabel">Work</span>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-ghost" id="resetBtn">Reset</button>
+          <button class="btn btn-primary" id="startBtn">Start</button>
+          <button class="btn btn-ghost" id="skipBtn">Skip</button>
+        </div>
+        <div class="session-row">
+          <span>Today's sessions:</span>
+          <span class="tomatoes" id="tomatoDisplay"></span>
+        </div>
+        <div class="motivation-banner" id="motivationBanner">
+          Ready when you are… which, knowing you, might be a while.
+        </div>
+      </section>
+
+      <!-- Daily Goals -->
+      <section class="card goals-card">
+        <h2>Today's 3 Goals</h2>
+        <p class="goals-hint">Three goals. Finish them. No halfway counts.</p>
+        <div class="goals-list" id="goalsList"></div>
+        <div class="goals-progress-bar-wrap">
+          <div class="goals-progress-bar" id="goalsProgressBar"></div>
+        </div>
+        <p class="goals-progress-label" id="goalsProgressLabel">0 / 3 complete</p>
+      </section>
+
+      <!-- Analysis (Week + Calendar) -->
+      <section class="card analysis-card">
+        <div class="analysis-header">
+          <h2>Activity</h2>
+          <div class="view-tabs">
+            <button class="view-tab active" data-view="week">Week</button>
+            <button class="view-tab" data-view="calendar">Calendar</button>
+          </div>
+        </div>
+
+        <!-- Week view -->
+        <div id="weekView">
+          <div class="week-grid" id="weekGrid"></div>
+          <div class="week-stats" id="weekStats"></div>
+        </div>
+
+        <!-- Calendar view -->
+        <div id="calendarView" class="hidden">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" id="calPrev">&#8249;</button>
+            <span class="cal-month-label" id="calMonthLabel"></span>
+            <button class="cal-nav-btn" id="calNext">&#8250;</button>
+          </div>
+          <div class="cal-weekdays">
+            <span>Mon</span><span>Tue</span><span>Wed</span>
+            <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-legend">
+            <span class="legend-dot" style="background:var(--surface2)"></span> No data
+            <span class="legend-dot" style="background:var(--accent); opacity:0.6"></span> Active
+            <span class="legend-dot" style="background:var(--accent2)"></span> Perfect
+          </div>
+        </div>
+      </section>
+
+      <!-- Todo List -->
+      <section class="card todo-card">
+        <div class="todo-header">
+          <h2>To-Do List</h2>
+          <span class="todo-count" id="todoCount">0 left</span>
+        </div>
+        <div class="todo-input-row">
+          <input class="todo-input" id="todoInput" type="text" placeholder="Add a task…" maxlength="120" />
+          <button class="btn btn-primary todo-add-btn" id="todoAddBtn">Add</button>
+        </div>
+        <div class="todo-list" id="todoList"></div>
+        <div class="todo-footer">
+          <button class="link-btn" id="todoClearDone">Clear done</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-emoji" id="modalEmoji">🎉</div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalMsg"></p>
+      <button class="btn btn-primary" id="modalCloseBtn">OK, back to work</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
