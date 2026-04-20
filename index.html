@@ -14,6 +14,15 @@
         <span class="tagline">No excuses, Ben.</span>
       </div>
       <div class="header-right">
+        <div class="streak-display" id="streakDisplay" title="Current streak">
+          <span class="streak-icon">🔥</span>
+          <div class="streak-nums">
+            <span class="streak-count" id="streakCount">0</span>
+            <span class="streak-label">day streak</span>
+          </div>
+          <div class="streak-best" id="streakBest">🏆 0</div>
+        </div>
+        <button class="notif-btn" id="notifBtn" title="Enable notifications">🔔</button>
         <span class="date-display" id="dateDisplay"></span>
       </div>
     </header>
@@ -63,19 +72,64 @@
         <p class="goals-progress-label" id="goalsProgressLabel">0 / 3 complete</p>
       </section>
 
-      <!-- Weekly Analysis -->
+      <!-- Analysis (Week + Calendar) -->
       <section class="card analysis-card">
-        <h2>This Week</h2>
-        <div class="week-grid" id="weekGrid"></div>
-        <div class="week-stats" id="weekStats"></div>
+        <div class="analysis-header">
+          <h2>Activity</h2>
+          <div class="view-tabs">
+            <button class="view-tab active" data-view="week">Week</button>
+            <button class="view-tab" data-view="calendar">Calendar</button>
+          </div>
+        </div>
+
+        <!-- Week view -->
+        <div id="weekView">
+          <div class="week-grid" id="weekGrid"></div>
+          <div class="week-stats" id="weekStats"></div>
+        </div>
+
+        <!-- Calendar view -->
+        <div id="calendarView" class="hidden">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" id="calPrev">&#8249;</button>
+            <span class="cal-month-label" id="calMonthLabel"></span>
+            <button class="cal-nav-btn" id="calNext">&#8250;</button>
+          </div>
+          <div class="cal-weekdays">
+            <span>Mon</span><span>Tue</span><span>Wed</span>
+            <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-legend">
+            <span class="legend-dot" style="background:var(--surface2)"></span> No data
+            <span class="legend-dot" style="background:var(--accent); opacity:0.6"></span> Active
+            <span class="legend-dot" style="background:var(--accent2)"></span> Perfect
+          </div>
+        </div>
+      </section>
+
+      <!-- Todo List -->
+      <section class="card todo-card">
+        <div class="todo-header">
+          <h2>To-Do List</h2>
+          <span class="todo-count" id="todoCount">0 left</span>
+        </div>
+        <div class="todo-input-row">
+          <input class="todo-input" id="todoInput" type="text" placeholder="Add a task…" maxlength="120" />
+          <button class="btn btn-primary todo-add-btn" id="todoAddBtn">Add</button>
+        </div>
+        <div class="todo-list" id="todoList"></div>
+        <div class="todo-footer">
+          <button class="link-btn" id="todoClearDone">Clear done</button>
+        </div>
       </section>
     </main>
   </div>
 
-  <!-- Toast Notification -->
+  <!-- Toast -->
   <div class="toast" id="toast"></div>
 
-  <!-- Celebration Modal -->
+  <!-- Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-emoji" id="modalEmoji">🎉</div>
