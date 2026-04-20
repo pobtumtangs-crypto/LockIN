@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LockIN — Ben's Productivity App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <h1>🔒 LockIN</h1>
+        <span class="tagline">No excuses, Ben.</span>
+      </div>
+      <div class="header-right">
+        <span class="date-display" id="dateDisplay"></span>
+      </div>
+    </header>
+
+    <main>
+      <!-- Pomodoro Timer -->
+      <section class="card pomodoro-card">
+        <h2>Focus Timer</h2>
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="work">Work (25 min)</button>
+          <button class="mode-tab" data-mode="short">Break (5 min)</button>
+          <button class="mode-tab" data-mode="long">Long Break (15 min)</button>
+        </div>
+        <div class="timer-ring-wrap">
+          <svg class="timer-ring" viewBox="0 0 200 200">
+            <circle class="ring-bg" cx="100" cy="100" r="88" />
+            <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="88"
+              stroke-dasharray="553" stroke-dashoffset="0" />
+          </svg>
+          <div class="timer-center">
+            <span class="timer-display" id="timerDisplay">25:00</span>
+            <span class="timer-label" id="timerLabel">Work</span>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-ghost" id="resetBtn">Reset</button>
+          <button class="btn btn-primary" id="startBtn">Start</button>
+          <button class="btn btn-ghost" id="skipBtn">Skip</button>
+        </div>
+        <div class="session-row">
+          <span>Today's sessions:</span>
+          <span class="tomatoes" id="tomatoDisplay"></span>
+        </div>
+        <div class="motivation-banner" id="motivationBanner">
+          Ready when you are… which, knowing you, might be a while.
+        </div>
+      </section>
+
+      <!-- Daily Goals -->
+      <section class="card goals-card">
+        <h2>Today's 3 Goals</h2>
+        <p class="goals-hint">Three goals. Finish them. No halfway counts.</p>
+        <div class="goals-list" id="goalsList"></div>
+        <div class="goals-progress-bar-wrap">
+          <div class="goals-progress-bar" id="goalsProgressBar"></div>
+        </div>
+        <p class="goals-progress-label" id="goalsProgressLabel">0 / 3 complete</p>
+      </section>
+
+      <!-- Weekly Analysis -->
+      <section class="card analysis-card">
+        <h2>This Week</h2>
+        <div class="week-grid" id="weekGrid"></div>
+        <div class="week-stats" id="weekStats"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Celebration Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-emoji" id="modalEmoji">🎉</div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalMsg"></p>
+      <button class="btn btn-primary" id="modalCloseBtn">OK, back to work</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
